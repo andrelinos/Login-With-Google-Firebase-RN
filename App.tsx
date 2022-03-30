@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
 
 import {
@@ -8,7 +9,7 @@ import {
 import {View} from 'react-native';
 
 export default function App() {
-  const [user, setUser] = useState({});
+  const [userData, setUserData] = useState({});
 
   GoogleSignin.configure();
 
@@ -17,7 +18,7 @@ export default function App() {
       await GoogleSignin.hasPlayServices();
       const {user} = await GoogleSignin.signIn();
 
-      setUser(user);
+      setUserData(user);
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
       } else if (error.code === statusCodes.IN_PROGRESS) {
@@ -28,10 +29,10 @@ export default function App() {
   }
 
   useEffect(() => {
-    if (user !== null) {
-      console.log('USER: => ', user);
+    if (userData !== null) {
+      console.log('USER: => ', userData);
     }
-  }, [user]);
+  }, [userData]);
 
   return (
     <View
